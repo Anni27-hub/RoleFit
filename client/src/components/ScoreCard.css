@@ -1,0 +1,35 @@
+.score-card {
+  border: 1px solid #dce5ed;
+  border-radius: 22px;
+  background: #ffffff;
+  padding: 24px;
+  text-align: center;
+  box-shadow: 0 14px 42px rgba(28, 43, 58, 0.08);
+}
+
+.score-number {
+  margin-bottom: 8px;
+  font-size: 3rem;
+  font-weight: 950;
+  line-height: 1;
+}
+
+.score-good .score-number {
+  color: #10b981;
+}
+
+.score-warn .score-number {
+  color: #f59e0b;
+}
+
+.score-bad .score-number {
+  color: #ef4444;
+}
+
+.score-label {
+  color: #62717f;
+  font-size: 0.8rem;
+  font-weight: 900;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+}

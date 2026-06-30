@@ -1,0 +1,50 @@
+.keyword-box {
+  border: 1px solid #dce5ed;
+  border-radius: 20px;
+  background: #ffffff;
+  padding: 18px;
+}
+
+.keyword-box h3 {
+  margin: 0 0 14px;
+  color: #536473;
+  font-size: 0.8rem;
+  font-weight: 950;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+}
+
+.keyword-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.keyword-tag {
+  display: inline-flex;
+  border: 1px solid #dce5ed;
+  border-radius: 999px;
+  background: #f8fbff;
+  padding: 7px 11px;
+  color: #334252;
+  font-size: 0.82rem;
+  font-weight: 800;
+}
+
+.keyword-missing .keyword-tag {
+  border-color: rgba(255, 107, 95, 0.24);
+  background: rgba(255, 107, 95, 0.08);
+  color: #c24137;
+}
+
+.keyword-matched .keyword-tag {
+  border-color: rgba(16, 185, 129, 0.24);
+  background: rgba(16, 185, 129, 0.09);
+  color: #0f8a67;
+}
+
+.empty {
+  margin: 0;
+  color: #62717f;
+  font-size: 0.9rem;
+}

@@ -1,0 +1,165 @@
+.premium-page {
+  min-height: 100vh;
+  background:
+    radial-gradient(circle at 15% 12%, rgba(37, 99, 235, 0.16), transparent 25rem),
+    radial-gradient(circle at 86% 20%, rgba(16, 185, 129, 0.14), transparent 25rem),
+    var(--rf-bg);
+  color: var(--rf-ink);
+}
+
+.premium-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  min-height: 78px;
+  padding: 0 clamp(18px, 5vw, 72px);
+  border-bottom: 1px solid var(--rf-line);
+  background: color-mix(in srgb, var(--rf-paper) 90%, transparent);
+}
+
+.premium-nav > div {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  color: var(--rf-muted);
+  font-weight: 850;
+}
+
+.premium-nav a {
+  text-decoration: none;
+}
+
+.premium-nav button,
+.plan-card button,
+.plan-card a {
+  border: 0;
+  border-radius: 12px;
+  background: var(--rf-blue);
+  color: #ffffff;
+  padding: 12px 15px;
+  font: inherit;
+  font-weight: 950;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.premium-hero,
+.pricing-grid,
+.payment-history {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 56px clamp(18px, 5vw, 72px) 0;
+}
+
+.premium-hero h1 {
+  max-width: 860px;
+  margin: 0;
+  font-size: clamp(2.8rem, 6vw, 5.5rem);
+  line-height: 1;
+}
+
+.premium-hero p {
+  max-width: 760px;
+  color: var(--rf-muted);
+  font-size: 1.08rem;
+  line-height: 1.7;
+}
+
+.pricing-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 20px;
+}
+
+.plan-card,
+.payment-history {
+  border: 1px solid var(--rf-line);
+  border-radius: 26px;
+  background: var(--rf-paper);
+  box-shadow: var(--rf-shadow);
+}
+
+.plan-card {
+  padding: 28px;
+}
+
+.plan-card span {
+  color: var(--rf-blue);
+  font-size: 0.78rem;
+  font-weight: 950;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.plan-card h2 {
+  margin: 12px 0;
+  font-size: 2rem;
+}
+
+.plan-card strong {
+  display: block;
+  color: var(--rf-blue);
+  font-size: 2.8rem;
+}
+
+.plan-card p {
+  color: var(--rf-muted);
+  line-height: 1.65;
+}
+
+.premium-plan {
+  background:
+    linear-gradient(135deg, rgba(37, 99, 235, 0.12), rgba(16, 185, 129, 0.11)),
+    var(--rf-paper);
+}
+
+.payment-status {
+  border-radius: 12px;
+  background: rgba(16, 185, 129, 0.12);
+  padding: 12px;
+  color: var(--rf-emerald) !important;
+  font-weight: 900;
+}
+
+.payment-history {
+  display: grid;
+  gap: 12px;
+  margin-top: 28px;
+  margin-bottom: 72px;
+  padding: 26px;
+}
+
+.payment-history h2,
+.payment-history p {
+  margin: 0;
+}
+
+.payment-history article {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  border: 1px solid var(--rf-line);
+  border-radius: 16px;
+  padding: 14px;
+}
+
+.payment-history span {
+  display: block;
+  margin-top: 4px;
+  color: var(--rf-muted);
+  font-size: 0.82rem;
+}
+
+@media (max-width: 760px) {
+  .premium-nav {
+    align-items: flex-start;
+    flex-direction: column;
+    padding-top: 16px;
+    padding-bottom: 16px;
+  }
+
+  .pricing-grid {
+    grid-template-columns: 1fr;
+  }
+}
