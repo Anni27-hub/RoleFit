@@ -76,7 +76,8 @@ const Premium = () => {
           <span className="brand-mark">RF</span>RoleFit AI
         </Link>
         <div>
-          <Link to="/history">Dashboard</Link>
+          <Link to="/resume-builder" className="nav-workspace-link">AI Workspace</Link>
+          <Link to="/history">History</Link>
           <button className="theme-toggle" type="button" onClick={toggleTheme}>
             {theme === "dark" ? "Light" : "Dark"}
           </button>
@@ -89,29 +90,74 @@ const Premium = () => {
         <p className="section-kicker">Premium</p>
         <h1>Unlock more AI resume analyses.</h1>
         <p>
-          Your account has <strong>{user?.analysisCredits ?? 0}</strong> credits left.
-          Upgrade with Razorpay test checkout and add premium credits instantly after verification.
+          You currently have <strong className="credit-badge">{user?.analysisCredits ?? 0} credits</strong> available.
+          Upgrade with Razorpay test checkout to add premium credits instantly.
         </p>
       </section>
 
       <section className="pricing-grid">
         <article className="plan-card">
-          <span>Free</span>
+          <span className="plan-tag">Free Tier</span>
           <h2>Starter</h2>
-          <strong>2 credits</strong>
-          <p>Good for testing the analyzer and saving initial history.</p>
-          <Link to="/">Use free checker</Link>
+          <div className="plan-price">
+            <span className="currency">₹</span>0
+          </div>
+          <p className="plan-summary">Included upon account registration to test the analyzer.</p>
+          <ul className="plan-features">
+            <li>
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+              <span>2 full resume ATS evaluations</span>
+            </li>
+            <li>
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+              <span>ATS score breakdown & insights</span>
+            </li>
+            <li>
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+              <span>Keyword alignment checklist</span>
+            </li>
+            <li>
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+              <span>Export clean PDF reports</span>
+            </li>
+          </ul>
+          <Link to="/" className="plan-action-btn secondary">Use free checker</Link>
         </article>
 
         <article className="plan-card premium-plan">
-          <span>Recommended</span>
+          <span className="plan-tag popular">Recommended</span>
           <h2>Premium Pack</h2>
-          <strong>INR {config.priceInr}</strong>
-          <p>
-            {config.credits} extra AI analyses, dashboard tracking, report download, and priority resume tailoring.
+          <div className="plan-price">
+            <span className="currency">₹</span>{config.priceInr}
+            <span className="period">/ one-time</span>
+          </div>
+          <p className="plan-summary">
+            +{config.credits} instant high-depth resume analysis credits for your job search.
           </p>
-          <button onClick={buyPremium} disabled={busy}>
-            {busy ? "Opening checkout..." : "Upgrade with Razorpay"}
+          <ul className="plan-features">
+            <li>
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+              <span>+{config.credits} deep AI resume scans</span>
+            </li>
+            <li>
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+              <span>Comprehensive ATS keyword gap finder</span>
+            </li>
+            <li>
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+              <span>AI bullet point rewriter with rationale</span>
+            </li>
+            <li>
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+              <span>Skill gap roadmap & recommended actions</span>
+            </li>
+            <li>
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+              <span>Instant Razorpay checkout activation</span>
+            </li>
+          </ul>
+          <button className="plan-action-btn primary" onClick={buyPremium} disabled={busy}>
+            {busy ? "Opening checkout..." : `Upgrade Now • ₹${config.priceInr}`}
           </button>
           {status && <p className="payment-status">{status}</p>}
         </article>
@@ -120,17 +166,32 @@ const Premium = () => {
       <section className="payment-history">
         <h2>Payment history</h2>
         {payments.length === 0 ? (
-          <p>No payments yet.</p>
+          <p className="payment-empty">No payments recorded yet.</p>
         ) : (
-          payments.map((payment) => (
-            <article key={payment._id || payment.razorpayOrderId}>
-              <div>
-                <strong>{payment.status}</strong>
-                <span>{payment.razorpayOrderId}</span>
-              </div>
-              <b>INR {Math.round((payment.amount || 0) / 100)}</b>
-            </article>
-          ))
+          <div className="payment-records-list">
+            {payments.map((payment) => (
+              <article key={payment._id || payment.razorpayOrderId} className="payment-record">
+                <div className="payment-record-left">
+                  <div className={`status-pill ${payment.status === "paid" ? "status-paid" : "status-pending"}`}>
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                    <span>{payment.status === "paid" ? "Paid" : payment.status}</span>
+                  </div>
+                  <div className="payment-record-info">
+                    <strong>+{payment.credits || 5} Analysis Credits</strong>
+                    <div className="payment-meta">
+                      <span>Order: {payment.razorpayOrderId}</span>
+                      {payment.createdAt && (
+                        <span>• {new Date(payment.createdAt).toLocaleDateString(undefined, { month: "short", day: "numeric", year: "numeric" })}</span>
+                      )}
+                    </div>
+                  </div>
+                </div>
+                <div className="payment-record-amount">
+                  ₹{Math.round((payment.amount || 0) / 100)}
+                </div>
+              </article>
+            ))}
+          </div>
         )}
       </section>
     </main>

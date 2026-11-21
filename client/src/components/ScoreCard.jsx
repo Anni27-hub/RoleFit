@@ -1,6 +1,8 @@
 import "./ScoreCard.css";
 
-const ScoreCard = ({ score, label }) => {
+const ScoreCard = ({ score, label, title }) => {
+  const displayLabel = label || title || "";
+
   const getColor = (s) => {
     if (s >= 75) return "good";
     if (s >= 50) return "warn";
@@ -12,7 +14,7 @@ const ScoreCard = ({ score, label }) => {
   return (
     <div className={`score-card score-${color}`}>
       <div className="score-number">{score}</div>
-      <div className="score-label">{label}</div>
+      <div className="score-label">{displayLabel}</div>
     </div>
   );
 };

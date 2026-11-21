@@ -1,90 +1,441 @@
-.roadmap-summary,
-.roadmap-controls,
-.roadmap-container {
+.roadmap-wrapper {
   max-width: 1280px;
   margin: 0 auto;
-  padding: 0 clamp(18px, 5vw, 72px) 20px;
+  padding: 0 clamp(18px, 4.5vw, 64px) 64px;
+  display: grid;
+  gap: 24px;
 }
 
-.roadmap-summary {
+/* KPI Cards */
+.roadmap-kpi-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 16px;
 }
 
-.summary-card,
-.roadmap-card,
-.roadmap-note {
-  border: 1px solid var(--rf-line);
-  border-radius: 22px;
-  background: color-mix(in srgb, var(--rf-paper) 94%, transparent);
-  box-shadow: var(--rf-shadow);
-  padding: 22px;
+.kpi-target-text {
+  font-size: 1.35rem;
+  font-weight: 800;
+  color: #ffffff;
+  line-height: 1.2;
+  margin-bottom: 8px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
-.summary-card h2 {
-  margin: 0;
-  color: var(--rf-blue);
-  font-size: 2rem;
+.kpi-card.milestones::before { background: linear-gradient(90deg, #38bdf8, #0ea5e9); }
+.kpi-card.role-target::before { background: linear-gradient(90deg, #a855f7, #6366f1); }
+.kpi-card.capstone::before { background: linear-gradient(90deg, #10b981, #059669); }
+
+/* Controls Panel */
+.roadmap-controls-panel {
+  border-radius: 20px;
+  background: rgba(15, 23, 42, 0.7);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 24px;
+  box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.35);
 }
 
-.roadmap-controls {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 12px;
-}
-
-.roadmap-controls input,
-.roadmap-controls textarea {
-  border: 1px solid var(--rf-line);
-  border-radius: 14px;
-  padding: 14px 15px;
-  background: var(--rf-paper);
-}
-
-.roadmap-container {
-  display: grid;
-  gap: 14px;
-}
-
-.roadmap-card {
+.controls-header {
   display: flex;
   justify-content: space-between;
-  gap: 16px;
+  align-items: flex-start;
+  margin-bottom: 16px;
+}
+
+.controls-header h3 {
+  margin: 0 0 4px;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #ffffff;
+}
+
+.controls-header p {
+  margin: 0;
+  font-size: 0.82rem;
+  color: #94a3b8;
+}
+
+.controls-badge {
+  font-size: 0.65rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  padding: 3px 8px;
+  border-radius: 6px;
+  background: rgba(56, 189, 248, 0.1);
+  color: #38bdf8;
+  border: 1px solid rgba(56, 189, 248, 0.25);
+}
+
+.roadmap-presets-bar {
+  display: flex;
   align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 18px;
 }
 
-.roadmap-card button {
-  min-width: 160px;
+.preset-label {
+  font-size: 0.74rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #64748b;
+  margin-right: 4px;
 }
 
-.roadmap-card span {
-  color: var(--rf-blue);
-  font-weight: 900;
+.preset-pill {
+  padding: 6px 12px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.03);
+  color: #cbd5e1;
+  font-size: 0.76rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
 }
 
-.roadmap-note {
-  color: var(--rf-muted);
-  line-height: 1.65;
+.preset-pill:hover {
+  background: rgba(255, 255, 255, 0.08);
+  color: #ffffff;
+  border-color: rgba(255, 255, 255, 0.15);
 }
 
-@media (max-width: 980px) {
-  .roadmap-summary {
+.preset-pill.active {
+  background: rgba(56, 189, 248, 0.15);
+  border-color: rgba(56, 189, 248, 0.4);
+  color: #38bdf8;
+}
+
+.roadmap-inputs-grid {
+  display: grid;
+  gap: 16px;
+}
+
+.modern-input,
+.modern-textarea {
+  width: 100%;
+  box-sizing: border-box;
+  background: rgba(11, 18, 33, 0.85);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  padding: 10px 14px;
+  color: #f1f5f9;
+  font-size: 0.88rem;
+  font-family: inherit;
+  color-scheme: dark;
+  transition: all 0.2s ease;
+}
+
+.modern-input:focus,
+.modern-textarea:focus {
+  outline: none;
+  border-color: #38bdf8;
+  box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.15);
+  background: rgba(15, 23, 42, 0.95);
+}
+
+.modern-textarea {
+  resize: vertical;
+  line-height: 1.5;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 255, 255, 0.16) transparent;
+}
+
+.modern-textarea::-webkit-scrollbar {
+  width: 5px;
+}
+
+.modern-textarea::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.modern-textarea::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.18);
+  border-radius: 999px;
+}
+
+.modern-textarea::-webkit-resizer {
+  background: transparent;
+}
+
+.field-lbl {
+  display: block;
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #cbd5e1;
+  margin-bottom: 6px;
+}
+
+/* Timeline & Milestones */
+.milestones-timeline-section {
+  display: grid;
+  gap: 20px;
+}
+
+.timeline-section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+}
+
+.timeline-section-header h3 {
+  margin: 0;
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #ffffff;
+}
+
+.timeline-subtitle {
+  font-size: 0.8rem;
+  color: #64748b;
+}
+
+.milestones-list {
+  display: grid;
+  gap: 16px;
+  position: relative;
+}
+
+.milestone-card {
+  display: flex;
+  gap: 18px;
+  border-radius: 18px;
+  background: rgba(15, 23, 42, 0.7);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 20px;
+  box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.35);
+  transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.milestone-card:hover {
+  transform: translateY(-2px);
+  border-color: rgba(255, 255, 255, 0.16);
+}
+
+.milestone-node {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.node-number {
+  display: grid;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  background: linear-gradient(135deg, rgba(56, 189, 248, 0.2), rgba(99, 102, 241, 0.2));
+  border: 1px solid rgba(56, 189, 248, 0.4);
+  color: #38bdf8;
+  font-size: 0.82rem;
+  font-weight: 800;
+}
+
+.node-line {
+  width: 2px;
+  flex: 1;
+  background: linear-gradient(180deg, rgba(56, 189, 248, 0.3), transparent);
+  margin-top: 8px;
+}
+
+.milestone-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.milestone-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.milestone-title {
+  margin: 0;
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #ffffff;
+}
+
+.milestone-badges {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.priority-badge {
+  font-size: 0.7rem;
+  font-weight: 800;
+  padding: 3px 8px;
+  border-radius: 6px;
+  text-transform: uppercase;
+}
+
+.priority-badge.high {
+  background: rgba(244, 63, 94, 0.15);
+  color: #fda4af;
+  border: 1px solid rgba(244, 63, 94, 0.3);
+}
+
+.priority-badge.medium {
+  background: rgba(245, 158, 11, 0.15);
+  color: #fbbf24;
+  border: 1px solid rgba(245, 158, 11, 0.3);
+}
+
+.priority-badge.low {
+  background: rgba(16, 185, 129, 0.15);
+  color: #34d399;
+  border: 1px solid rgba(16, 185, 129, 0.3);
+}
+
+.duration-badge {
+  font-size: 0.72rem;
+  font-weight: 600;
+  padding: 3px 8px;
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.05);
+  color: #cbd5e1;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.milestone-summary {
+  margin: 0;
+  font-size: 0.84rem;
+  color: #94a3b8;
+  line-height: 1.5;
+}
+
+.milestone-footer {
+  margin-top: 6px;
+}
+
+.resource-link-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 12px;
+  border-radius: 8px;
+  border: 1px solid rgba(56, 189, 248, 0.3);
+  background: rgba(56, 189, 248, 0.08);
+  color: #38bdf8;
+  font-size: 0.78rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.resource-link-btn:hover {
+  background: rgba(56, 189, 248, 0.18);
+  border-color: rgba(56, 189, 248, 0.5);
+  transform: translateY(-1px);
+}
+
+/* Capstone Card */
+.capstone-callout-card {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  border-radius: 18px;
+  background: linear-gradient(135deg, rgba(16, 185, 129, 0.12) 0%, rgba(15, 23, 42, 0.8) 100%);
+  border: 1px solid rgba(16, 185, 129, 0.35);
+  padding: 24px;
+  box-shadow: 0 4px 20px rgba(16, 185, 129, 0.15);
+}
+
+.capstone-icon-badge {
+  font-size: 2.2rem;
+  flex-shrink: 0;
+}
+
+.capstone-details {
+  display: grid;
+  gap: 4px;
+}
+
+.capstone-tag {
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  color: #34d399;
+  text-transform: uppercase;
+}
+
+.capstone-title {
+  margin: 0;
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: #ffffff;
+}
+
+.capstone-desc {
+  margin: 0;
+  font-size: 0.84rem;
+  line-height: 1.5;
+  color: #cbd5e1;
+}
+
+/* Clean Preview Empty State */
+.preview-empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 400px;
+  text-align: center;
+  padding: 40px 24px;
+}
+
+.empty-icon-circle {
+  display: grid;
+  place-items: center;
+  width: 56px;
+  height: 56px;
+  border-radius: 16px;
+  background: rgba(56, 189, 248, 0.08);
+  border: 1px solid rgba(56, 189, 248, 0.2);
+  color: #38bdf8;
+  margin-bottom: 16px;
+}
+
+.preview-empty-state h3 {
+  margin: 0 0 8px;
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #ffffff;
+}
+
+.preview-empty-state p {
+  margin: 0;
+  font-size: 0.86rem;
+  color: #94a3b8;
+  max-width: 440px;
+  line-height: 1.55;
+}
+
+@media (max-width: 900px) {
+  .roadmap-kpi-grid {
     grid-template-columns: 1fr;
   }
-
-  .roadmap-card {
+  .capstone-callout-card {
     flex-direction: column;
     align-items: flex-start;
   }
-}
-
-.roadmap-link-btn {
-  width: auto;
-  min-width: 160px;
-  min-height: 44px;
-  margin-top: 0;
-  padding: 10px 16px;
-  border-radius: 12px;
-  font-size: 0.95rem;
 }

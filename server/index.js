@@ -8,6 +8,7 @@ import paymentRoutes from "./routes/paymentRoutes.js";
 import featureRoutes from "./routes/featureRoutes.js";
 import { connectDb } from "./config/db.js";
 
+dotenv.config({ path: "./server/.env" });
 dotenv.config();
 
 const app = express();

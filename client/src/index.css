@@ -88,10 +88,14 @@ textarea {
   display: inline-flex;
   align-items: center;
   gap: 12px;
-  color: #17212b;
+  color: var(--rf-ink, #17212b);
   text-decoration: none;
   font-size: 1.35rem;
   font-weight: 950;
+}
+
+:root[data-theme="dark"] .brand {
+  color: #f1f5f9;
 }
 
 .brand-mark {
@@ -147,6 +151,45 @@ textarea {
 :focus-visible {
   outline: 3px solid rgba(37, 99, 235, 0.3);
   outline-offset: 2px;
+}
+
+/* Global Modern Scrollbars (Eliminates ugly Windows white scrollbars everywhere) */
+html,
+body,
+textarea,
+input,
+select,
+pre,
+div {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 255, 255, 0.18) transparent;
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.16);
+  border-radius: 999px;
+  transition: background 0.2s ease;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+::-webkit-scrollbar-corner {
+  background: transparent;
+}
+
+textarea::-webkit-resizer {
+  background: transparent;
 }
 
 @media (prefers-reduced-motion: reduce) {

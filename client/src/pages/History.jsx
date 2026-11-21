@@ -32,6 +32,7 @@ const History = () => {
       <nav className="history-nav">
         <Link className="brand" to="/"><span className="brand-mark">RF</span>RoleFit AI</Link>
         <div>
+          <Link to="/resume-builder" className="nav-workspace-link">AI Workspace</Link>
           <Link to="/premium">Premium</Link>
           <button className="theme-toggle" type="button" onClick={toggleTheme}>
             {theme === "dark" ? "Light" : "Dark"}

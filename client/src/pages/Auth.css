@@ -185,15 +185,169 @@
 .google-wrap {
   display: flex;
   justify-content: center;
+  width: 100%;
+  margin-top: 4px;
 }
 
 .google-wrap > div {
-  width: 100%;
-  max-width: 320px;
+  display: flex;
+  justify-content: center;
+  border-radius: 999px !important;
+  overflow: hidden !important;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.google-wrap > div:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.35);
+}
+
+.google-wrap iframe {
+  border-radius: 999px !important;
+  overflow: hidden !important;
+}
+
+.auth-top-actions {
+  grid-column: 1 / -1;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: -10px;
+}
+
+.auth-back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: #536473;
+  text-decoration: none;
+  font-size: 0.86rem;
+  font-weight: 800;
+  transition: color 0.2s ease;
+}
+
+.auth-back-link:hover {
+  color: #2563eb;
+}
+
+.auth-top-actions .theme-toggle {
+  border: 1px solid #dce5ed;
+  border-radius: 999px;
+  background: #ffffff;
+  color: #536473;
+  padding: 6px 14px;
+  font: inherit;
+  font-size: 0.8rem;
+  font-weight: 850;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.auth-top-actions .theme-toggle:hover {
+  border-color: #2563eb;
+  color: #2563eb;
+}
+
+:root[data-theme="dark"] .auth-page {
+  background-color: #080d1a;
+  background-image:
+    radial-gradient(ellipse 80% 50% at 50% -20%, rgba(56, 189, 248, 0.12), transparent 70%),
+    radial-gradient(circle at 18% 12%, rgba(99, 102, 241, 0.08), transparent 400px),
+    linear-gradient(to bottom, #080d1a 0%, #060913 100%);
+  color: #f1f5f9;
+}
+
+:root[data-theme="dark"] .auth-back-link {
+  color: #94a3b8;
+}
+
+:root[data-theme="dark"] .auth-back-link:hover {
+  color: #38bdf8;
+}
+
+:root[data-theme="dark"] .auth-top-actions .theme-toggle {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: #cbd5e1;
+}
+
+:root[data-theme="dark"] .auth-top-actions .theme-toggle:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: #ffffff;
+}
+
+:root[data-theme="dark"] .auth-logo {
+  color: #f1f5f9;
+}
+
+:root[data-theme="dark"] .auth-brand-panel h1 {
+  background: linear-gradient(180deg, #ffffff 30%, #94a3b8 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+:root[data-theme="dark"] .auth-brand-panel p:not(.section-kicker) {
+  color: #94a3b8;
+}
+
+:root[data-theme="dark"] .auth-proof span {
+  background: rgba(15, 23, 42, 0.7);
+  border: 1px solid rgba(56, 189, 248, 0.3);
+  color: #38bdf8;
+}
+
+:root[data-theme="dark"] .auth-card {
+  background: rgba(15, 23, 42, 0.75);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 24px 70px rgba(0, 0, 0, 0.5);
+}
+
+:root[data-theme="dark"] .auth-tabs {
+  background: rgba(0, 0, 0, 0.3);
+}
+
+:root[data-theme="dark"] .auth-tabs button {
+  color: #94a3b8;
+}
+
+:root[data-theme="dark"] .auth-tabs button.active {
+  background: rgba(56, 189, 248, 0.15);
+  color: #38bdf8;
+  border: 1px solid rgba(56, 189, 248, 0.3);
+  box-shadow: 0 4px 16px rgba(56, 189, 248, 0.2);
+}
+
+:root[data-theme="dark"] .auth-card label span {
+  color: #cbd5e1;
+}
+
+:root[data-theme="dark"] .auth-card input {
+  background: rgba(11, 18, 33, 0.8);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #f1f5f9;
+}
+
+:root[data-theme="dark"] .auth-card input:focus {
+  border-color: #38bdf8;
+  box-shadow: 0 0 0 4px rgba(56, 189, 248, 0.2);
+}
+
+:root[data-theme="dark"] .auth-submit {
+  background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%);
+  border: 1px solid rgba(56, 189, 248, 0.4);
+  box-shadow: 0 10px 25px -4px rgba(2, 132, 199, 0.45);
+}
+
+:root[data-theme="dark"] .auth-divider::before {
+  background: rgba(255, 255, 255, 0.1);
 }
 
 :root[data-theme="dark"] .auth-divider span {
-  background: #ffffff;
+  background: #0f172a;
+  color: #64748b;
 }
 
 @media (max-width: 900px) {

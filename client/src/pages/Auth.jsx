@@ -2,6 +2,7 @@ import { useState } from "react";
 import { GoogleLogin } from "@react-oauth/google";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext.jsx";
+import { useTheme } from "../context/ThemeContext.jsx";
 import "./Auth.css";
 
 const Auth = () => {
@@ -10,6 +11,7 @@ const Auth = () => {
   const [error, setError] = useState("");
   const [busy, setBusy] = useState(false);
   const { googleLogin, login, signup } = useAuth();
+  const { theme, toggleTheme } = useTheme();
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -53,6 +55,16 @@ const Auth = () => {
 
   return (
     <main className="auth-page">
+      <div className="auth-top-actions">
+        <Link to="/" className="auth-back-link">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+          Back to Home
+        </Link>
+        <button className="theme-toggle" type="button" onClick={toggleTheme}>
+          {theme === "dark" ? "Light" : "Dark"}
+        </button>
+      </div>
+
       <section className="auth-brand-panel">
         <Link className="auth-logo" to="/">
           <span>RF</span>
@@ -119,7 +131,8 @@ const Auth = () => {
             onError={() => setError("Google login was cancelled or failed.")}
             text="continue_with"
             shape="pill"
-            width={320}
+            theme="outline"
+            width="340"
           />
         </div>
       </section>
