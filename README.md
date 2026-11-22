@@ -4,6 +4,16 @@ AI-powered Resume Analyzer, ATS Optimizer, Cover Letter Generator, and Interview
 
 ---
 
+## Live Deployments
+
+| Component | Platform | URL |
+| :--- | :--- | :--- |
+| **Frontend Web App** | Vercel | [https://rolefit-smoky.vercel.app](https://rolefit-smoky.vercel.app) |
+| **Backend REST API** | Render | [https://rolefit-api-bjqd.onrender.com](https://rolefit-api-bjqd.onrender.com) |
+| **API Health Check** | Render | [https://rolefit-api-bjqd.onrender.com/api/health](https://rolefit-api-bjqd.onrender.com/api/health) |
+
+---
+
 # Overview
 
 RoleFit AI is a full-stack MERN application that helps job seekers improve their resumes, analyze ATS compatibility, generate tailored cover letters, prepare for interviews, and track job applications using AI.
