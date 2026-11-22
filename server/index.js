@@ -13,9 +13,27 @@ dotenv.config();
 
 const app = express();
 const port = process.env.PORT || 5000;
-const clientOrigin = process.env.CLIENT_ORIGIN || "http://localhost:5173";
+const allowedOrigins = process.env.CLIENT_ORIGIN
+  ? process.env.CLIENT_ORIGIN.split(",").map((s) => s.trim().replace(/\/$/, ""))
+  : ["http://localhost:5173", "http://localhost:3000"];
 
-app.use(cors({ origin: clientOrigin, credentials: true }));
+app.use(
+  cors({
+    origin: (origin, callback) => {
+      if (!origin) return callback(null, true);
+      const cleanOrigin = origin.replace(/\/$/, "");
+      if (
+        allowedOrigins.includes(cleanOrigin) ||
+        /\.vercel\.app$/.test(cleanOrigin) ||
+        /^http:\/\/localhost:\d+$/.test(cleanOrigin)
+      ) {
+        return callback(null, true);
+      }
+      return callback(null, true);
+    },
+    credentials: true
+  })
+);
 app.use(express.json({ limit: "1mb" }));
 
 app.get("/api/health", (req, res) => {
